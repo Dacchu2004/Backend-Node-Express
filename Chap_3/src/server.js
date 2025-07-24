@@ -12,6 +12,8 @@ const __filename = fileURLToPath(import.meta.url);
 // Get the directory name from the fie path
 const __dirname = dirname(__filename);
 
+// Middlewares
+app.use(express.json());
 app.use(express.static(path.join(__dirname,'../public')));
 
 app.get('/', (req,res) =>{

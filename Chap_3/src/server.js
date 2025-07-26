@@ -3,6 +3,7 @@ import express from 'express';
 import path, {dirname} from 'path';
 import {fileURLToPath} from 'url';
 import authRoutes from './routes/authRoutes.js';
+import todoRoutes from './routes/todoRoutes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,7 +15,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Middlewares
-app.use(express.json());
+app.use(express.json()); //Parses incoming JSON and puts it in req.body
 app.use(express.static(path.join(__dirname,'../public')));
 
 app.get('/', (req,res) =>{
@@ -23,6 +24,7 @@ app.get('/', (req,res) =>{
 
 //Routes
 app.use('/auth',authRoutes);
+app.use('/todos',todoRoutes);
 
 app.listen(PORT,()=>{
   console.log(`Server is running on port ${PORT}`);

@@ -1,11 +1,11 @@
 
 import express from 'express';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import db from '../db.js';
 
 
-const router = express.router();
+const router = express.Router();
 
 //for signup and register
 router.post('/register',(req,res)=>{});

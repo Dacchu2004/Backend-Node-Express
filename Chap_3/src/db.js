@@ -13,10 +13,10 @@ db.exec(`
 db.exec(`
     CREATE TABLE todos (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    uer_id INTEGER,
+    user_id INTEGER,
     title TEXT,
     completed BOOLEAN DEFAULT 0,
-    FOREIGN KEY(user_id) REFERNECES users(id)
+    FOREIGN KEY(user_id) REFERENCES users(id)
     )
 `)
 

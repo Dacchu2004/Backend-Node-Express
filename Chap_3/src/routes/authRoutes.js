@@ -47,7 +47,12 @@ router.post('/login',(req,res)=>{
         if(!user) { return res.status(404).send({message:"User Not Found!!"})}
 
         const passwordIsValid = bcrypt.compareSync(password,user.password); //compare the password with the hashed password in the database but the password will to converted to the hased and then its is compared
-        if(!passwordIsValid){return res.status(401).send({message:"Invalid Password!!"})} 
+        if(!passwordIsValid){return res.status(401).send({message:"Invalid Password!!"})}
+        console.log(user);
+
+        //creating the token
+        const token = jwt.sign({id:user.id}, process.env.JWT_SECRET, {expiresIn:'24h'}); //signing the token with user id and secret key
+        res.json({token}); //send the token to the client
 
     }catch(err){
         console.log(err.message);

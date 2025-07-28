@@ -14,7 +14,7 @@ db.exec(`
     CREATE TABLE todos (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
-    title TEXT,
+    task TEXT,
     completed BOOLEAN DEFAULT 0,
     FOREIGN KEY(user_id) REFERENCES users(id)
     )

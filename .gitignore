@@ -15,4 +15,4 @@ pids
 Thumbs.db
 
 # Environment files
-.env
+.env*

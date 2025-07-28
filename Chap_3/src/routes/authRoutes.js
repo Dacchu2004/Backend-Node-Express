@@ -3,6 +3,7 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import db from '../db.js';
+import { send } from 'process';
 
 
 const router = express.Router();
@@ -44,6 +45,10 @@ router.post('/login',(req,res)=>{
         const user = getUser.get(username); //get the user from the database
 
         if(!user) { return res.status(404).send({message:"User Not Found!!"})}
+
+        const passwordIsValid = bcrypt.compareSync(password,user.password); //compare the password with the hashed password in the database but the password will to converted to the hased and then its is compared
+        if(!passwordIsValid){return res.status(401).send({message:"Invalid Password!!"})} 
+
     }catch(err){
         console.log(err.message);
         return res.status(503).send('Error logging in the user');

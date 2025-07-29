@@ -4,7 +4,7 @@
 import jwt from 'jsonwebtoken';
 
 function authMiddleware(req,res,next){
-    const token = req.hearders['authorization']; //get the token from the request headers
+    const token = req.headers['authorization']; //get the token from the request headers
     if(!token) {return res.status(401).json({message: "No Token Found!"})}
 
     jwt.verify(token,process.env.JWT_SECRET,(err,decoded)=>{

@@ -14,8 +14,8 @@ router.get('/',(req,res)=>{
 router.post('/',(req,res)=>{
     const { task } = req.body; //destructure the task from the request body which is sent by the client from the frontend
     const insertTodo = db.prepare(`INSERT INTO todos (user_id, task) VALUES(?,?)`);
-    insertTodo.run(req.userId, task); //req.userId is set by the auth middleware
-    res.json({id: insertTodo.lastID,task,completed:0})
+    const result = insertTodo.run(req.userId, task); //req.userId is set by the auth middleware
+    res.json({id: result.lastInsertRowid,task,completed:0})
 });
 
 //to update a to-do
